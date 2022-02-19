@@ -10,14 +10,20 @@ if %MyProgram%=="" (
 )
 
 REM Find in empty file
-REM %MyProgram% Empty.txt "a" || goto err
-REM fc Empty.txt EmptyOutput.txt > nul || goto err
-REM echo  Test 1 passed
+ %MyProgram% Empty.txt "a" && goto err
+ echo  Test 1 passed
 
 REM Copy non empty file
-REM %MyProgram% input.txt "pa" || goto err
-REM fc input.txt output.txt > nul || goto err
-REM echo  Test 2 passed
+ %MyProgram% input.txt "pa" || goto err
+ echo  Test 2 passed
+
+ REM Run with more arguments
+ %MyProgram% Empty.txt "a" 1 "d" && goto err
+ echo  Test 3 passed
+
+ REM Run with no arguments
+ %MyProgram%  && goto err
+ echo  Test 4 passed
 
 
 REM Тесты прошли успешно
